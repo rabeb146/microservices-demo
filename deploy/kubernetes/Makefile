@@ -16,7 +16,7 @@ docker-%: .dockerimage
 	docker \
 	  run \
 	  --rm \
-	  -it \
+	  -i \
 	  -u ${UID}:${GID} \
 	  -v ${PWD}:/workdir \
 	  manifests-image \
