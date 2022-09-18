@@ -12,7 +12,7 @@ pipeline {
              git url: 'https://github.com/rabeb146/microservices-demo.git'
             }
         }
-        stage('SonarQube analysis') {
+        stage('Sonarqube analysis') {
           steps {
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
             sh '''/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
