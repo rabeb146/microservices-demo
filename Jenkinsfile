@@ -24,7 +24,7 @@ pipeline {
           }
         }
            // Building Docker images
-        stage('Building docker image') {
+        stage('Building docker images') {
            steps{
              script {
               //sh 'make'
