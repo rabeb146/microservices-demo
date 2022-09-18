@@ -47,7 +47,7 @@ pipeline {
         stage('deploy to Openshiftt'){
               steps{ 
                script {
-                sh 'oc login --insecure-skip-tls-verify  https://102.37.157.97:8443 --token=FZPHBQLNB31TMLXWUcIoet66C8efKOV5flIaGOMeLVs'
+                sh 'oc login --insecure-skip-tls-verify  https://102.37.157.97:8443 --token=kOhhAKFIiobdfN7YgFR_HaQOb8LIPZKAMy8u1trv0cY'
                 // createOPNamespaceIfNotExist('sock-shop2')
                 sh 'oc project sock-shop'
                // sh ' docker pull nexus-registry-nexus.102.37.157.97.nip.io/nexus-registry/manifests-image:latest'
