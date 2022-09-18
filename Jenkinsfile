@@ -44,7 +44,7 @@ pipeline {
               }
            }
         }
-        stage('deploy to Openshift'){
+        stage('deploy to Openshiftt'){
               steps{ 
                script {
                 sh 'oc login --insecure-skip-tls-verify  https://102.37.157.97:8443 --token=FZPHBQLNB31TMLXWUcIoet66C8efKOV5flIaGOMeLVs'
