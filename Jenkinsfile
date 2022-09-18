@@ -7,7 +7,7 @@ pipeline {
         SCANNER_HOME = tool 'SonarQube_scanner'
     }
     stages {
-        stage('Code Checkout') {
+        stage('code Checkout') {
             steps {
              git url: 'https://github.com/rabeb146/microservices-demo.git'
             }
