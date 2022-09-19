@@ -16,9 +16,11 @@ pipeline {
           steps {
                       
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
+                withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
              
-            sh ''' mvn clean package sonar:sonar \
-            /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
+            sh ''' /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
