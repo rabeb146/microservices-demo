@@ -10,6 +10,8 @@ pipeline {
         stage('code Checkout') {
             steps {
              git url: 'https://github.com/microservices-demo/front-end.git'
+             git url: 'https://github.com/microservices-demo/catalogue.git'
+
             }
         }
         stage('Sonarqube analysis') {
