@@ -14,7 +14,6 @@ pipeline {
         }
         stage('Sonarqube analysis') {
           steps {
-                      sh 'maven clean install'
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
                         
             sh ''' /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
