@@ -14,15 +14,14 @@ pipeline {
         }
         stage('Sonarqube analysis') {
           steps {
-                      
+                      sh 'maven clean install'
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
                         
             sh ''' /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
-            -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT} \
-            -Dsonar.java.binaries= */Unit*.java '''
+            -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}  '''
              
 
             }
