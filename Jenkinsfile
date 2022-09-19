@@ -33,7 +33,7 @@ pipeline {
              script {
               //sh 'make'
                  
-              manifestsImg=docker.build("manifests-image","/var/lib/jenkins/workspace/Pipeline-microservices/deploy/kubernetes/")
+              manifestsImg=docker.build("manifests-image","/var/lib/jenkins/workspace/microservices/deploy/kubernetes/")
             }
            }
         }
