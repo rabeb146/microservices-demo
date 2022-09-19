@@ -22,7 +22,7 @@ pipeline {
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
             -Dsonar.tests=test/ \
-             sonar.exclusions = src/**/main/**/* \
+            -Dsonar.exclusions=src/**/main/**/* \
             -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}  '''
              
 
