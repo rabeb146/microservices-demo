@@ -21,7 +21,8 @@ pipeline {
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
-            -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+            -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}\
+            -Dsonar.java.binaries= **/*.java '''
              
 
             }
