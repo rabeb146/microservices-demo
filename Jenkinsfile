@@ -22,7 +22,6 @@ pipeline {
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=src/ \
             -Dsonar.tests=src/ \
-            -Dsonar.exclusions=src/**/test/**/ \
             -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}  '''
              
 
