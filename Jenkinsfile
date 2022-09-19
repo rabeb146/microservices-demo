@@ -15,11 +15,11 @@ pipeline {
         stage('Sonarqube analysis') {
           steps {
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
-                        
+                                //-Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \ 
+   
             sh ''' /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
-           // -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
             -Dsonar.sources = src/ \
             -Dsonar.tests = src/ \
             -Dsonar.exclusions = src/**/test/**/ \
