@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('code Checkout') {
             steps {
-             git url: 'https://github.com/rabeb146/microservices-demo.git'
+             git url: 'https://github.com/microservices-demo/shipping.git'
             }
         }
         stage('Sonarqube analysis') {
@@ -17,7 +17,8 @@ pipeline {
                       
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
              
-            sh '''/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
+            sh ''' mvn clean package sonar:sonar \
+            /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
