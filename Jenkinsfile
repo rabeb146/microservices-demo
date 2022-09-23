@@ -10,37 +10,30 @@ pipeline {
         stage('code Checkout') {
             steps {
              git url: 'https://github.com/microservices-demo/front-end.git'
-            
-
-            }
+                   }
         }
         stage('Sonarqube analysis') {
           steps {
             withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonar') {
-                                 
-   
             sh ''' /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_scanner/bin/sonar-scanner \
 
           # Définit le nom et clé du projet générée de SonarQube.
             -Dsonar.projectKey=sock-shop  \
             -Dsonar.projectName=sock-shop  \
-
-           # Définit l’emplacement des sources que SonarQube va analyser.
+          # Définit l’emplacement des sources que SonarQube va analyser.
             -Dsonar.sources=/var/lib/jenkins/workspace/Pipeline-microservices \
             
-            # La version de votre projet, pas celle de SonarQube
-            -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}  '''
-             
-
+            -Dsonar.java.binaries=./src/main   '''
             }
+               timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+       }
           }
         }
            // Building Docker images
         stage('Building docker images') {
            steps{
-             script {
-              //sh 'make'
-                 
+             script {          
               manifestsImg=docker.build("manifests-image","/home/azureuser/microservices-demo/deploy/kubernetes")
             }
            }
@@ -50,7 +43,6 @@ pipeline {
          steps{  
              script {
                 docker.withRegistry(registry,registryCredentials){
-                 //sh 'docker push nexus-registry-nexus.102.37.157.97.nip.io/manifests-image'
                  manifestsImg.push('latest')
 
                }
@@ -61,9 +53,7 @@ pipeline {
               steps{ 
                script {
                 sh 'oc login --insecure-skip-tls-verify  https://102.37.157.97:8443 --token=lhe8LJqSeDb-E4etZ55I80fmEPyAGQOi3TsQ-5EG7SY'
-                // createOPNamespaceIfNotExist('sock-shop2')
                 sh 'oc project sock-shop'
-               // sh ' docker pull nexus-registry-nexus.102.37.157.97.nip.io/nexus-registry/manifests-image:latest'
                sh 'kubectl apply -f /home/azureuser/microservices-demo/deploy/kubernetes/complete-demo.yaml'
                 }
            }
