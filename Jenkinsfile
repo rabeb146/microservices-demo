@@ -54,7 +54,7 @@ pipeline {
                script {
                 sh 'oc login --insecure-skip-tls-verify  https://102.37.157.97:8443 --token=lhe8LJqSeDb-E4etZ55I80fmEPyAGQOi3TsQ-5EG7SY'
                 sh 'oc project sock-shop'
-               sh 'kubectl apply -f /home/azureuser/microservices-demo/deploy/kubernetes/complete-demo.yaml'
+                sh 'kubectl apply -f /home/azureuser/microservices-demo/deploy/kubernetes/complete-demo.yaml'
                 }
            }
         }
